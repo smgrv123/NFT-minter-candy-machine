@@ -1,0 +1,19 @@
+{
+    "name": "Tanjiro's father",
+    "symbol": "",
+    "image": "4.png",
+    "properties": {
+      "files": [
+        {
+          "uri": "4.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "WY8CEtEnZdukSF6KfTh5ExHnYFmd95xrGz98hrn1bZ6",
+          "share": 100
+        }
+      ]
+    }
+  }

@@ -1,0 +1,19 @@
+{
+    "name": "Zenitsu Agatsuma ",
+    "symbol": "",
+    "image": "2.png",
+    "properties": {
+      "files": [
+        {
+          "uri": "2.png",
+          "type": "image/png"
+        }
+      ],
+      "creators": [
+        {
+          "address": "WY8CEtEnZdukSF6KfTh5ExHnYFmd95xrGz98hrn1bZ6",
+          "share": 100
+        }
+      ]
+    }
+  }
