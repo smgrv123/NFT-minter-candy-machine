@@ -13,6 +13,7 @@ import {
   getNetworkToken,
   CIVIC,
 } from "./helpers";
+import CountDownTimer from "../CountdownTimer";
 
 const { SystemProgram } = web3;
 const opts = {
@@ -33,6 +34,22 @@ const CandyMachine = ({ walletAddress }) => {
   useEffect(() => {
     getCandyMachineState();
   }, []);
+
+  const renderDropTimer = () => {
+    // Get the current date and dropDate in a JavaScript Date object
+    const currentDate = new Date();
+    const dropDate = new Date(candyMachine.state.goLiveData * 1000);
+
+    // If currentDate is before dropDate, render our Countdown component
+    if (currentDate < dropDate) {
+      console.log("Before drop date!");
+      // Don't forget to pass over your dropDate!
+      return <CountDownTimer dropDate={dropDate} />;
+    }
+
+    // Else let's just return the current drop date
+    return <p>{`Drop Date: ${candyMachine.state.goLiveDateTimeString}`}</p>;
+  };
 
   const getProvider = () => {
     const rpcHost = process.env.REACT_APP_SOLANA_RPC_HOST;
@@ -521,15 +538,21 @@ const CandyMachine = ({ walletAddress }) => {
     return [];
   };
   console.clear();
+  console.log(candyMachine,'candyMachine');
 
   return (
     candyMachine && (
       <div className="machine-container">
+        {renderDropTimer()}
         <p>{`Drop Date: ${candyMachine.state.goLiveDateTimeString}`}</p>
         <p>{`Items Minted: ${candyMachine.state.itemsRedeemed} / ${candyMachine.state.itemsAvailable}`}</p>
-        <button className="cta-button mint-button" onClick={mintToken}>
-          Mint NFT
-        </button>
+        {candyMachine.state.itemsAvailable === candyMachine.state.itemsRedeemed ? (
+          <p className="sub-text" >Sold out</p>
+        ) : (
+          <button className="cta-button mint-button" onClick={mintToken}>
+            Mint NFT
+          </button>
+        )}
       </div>
     )
   );
